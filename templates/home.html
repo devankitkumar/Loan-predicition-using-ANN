@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Approval</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f7;
+        }
+
+        /* Navbar styling ke liye*/
+        .navbar {
+            background-color: #007bff;
+            padding: 15px;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-right: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffd700 !important;
+        }
+
+        /* Form styling ke liye */
+        .form-section {
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .form-section h2 {
+            color: #007bff;
+        }
+
+        .form-control {
+            border-radius: 6px;
+        }
+
+        /* Button styling ke liye */
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        /* Footer ke liye*/
+        .footer {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            margin-top: 30px;
+            border-top-left-radius: 50% 20px;
+            border-top-right-radius: 50% 20px;
+            position: relative;
+        }
+
+        .footer .social-icons {
+            margin-top: 10px;
+        }
+
+        .footer .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            text-decoration: none;
+        }
+
+        /* Welcome section ke liye */
+        .animated-welcome {
+            color: #007bff;
+            font-weight: bold;
+            font-size: 2.5rem;
+        }
+
+        /*  Responsive Design ke liye */
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+
+            .navbar-nav .nav-link {
+                font-size: 0.9rem;
+            }
+
+            .animated-welcome {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <a class="navbar-brand" href="#">LoanApproval</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Welcome area -->
+    <div class="container text-center mt-5">
+        <h1 class="animated-welcome">Welcome to Loan Approval Project</h1>
+    </div>
+
+    <!-- Inputform ke liye -->
+    <div class="container form-section">
+        <h2 class="text-center">Enter Person's Details:</h2>
+        <form action="{{ url_for('predict') }}" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="no_of_dependents">No. of dependents</label>
+                    <input type="number" class="form-control" name="dependents" id="no_of_dependents"
+                        placeholder="Enter no. of dependents" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="income_annum">Annual Income</label>
+                    <input type="text" class="form-control" name="income" id="income_annum"
+                        placeholder="Enter your annual income" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="loan_amount">Loan Amount</label>
+                    <input type="text" class="form-control" name="loan_amount" id="loan_amount"
+                        placeholder="Enter Loan Amount" required>
+                </div>
+                    <div class="form-group col-md-6">
+                        <label for="loan_term">Loan term</label>
+                        <input type="number" class="form-control" name="loan_term" id="loan_term"
+                            placeholder="Enter Loan Term" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="cibil_score">Cibil Score</label>
+                        <input type="text" class="form-control" name="cibil_score" id="cibil_score"
+                            placeholder="Enter Cibil Score" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="residential_assets_value">Residential Assets Value</label>
+                        <input type="text" class="form-control" name="residential_assets_value"
+                            id="residential_assets_value" placeholder="Enter Residential Assets Value" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="commercial_assets_value">Commercial Assets Value</label>
+                        <input type="text" class="form-control" name="commercial_assets_value" id="commercial_assets_value"
+                            placeholder="Enter Commercial Assets Value" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="luxury_assets_value">Luxury Assets Value</label>
+                        <input type="text" class="form-control" name="luxury_assets_value" id="luxury_assets_value"
+                            placeholder="Enter Luxury Assets Value" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="bank_asset_value">Bank Assets Value</label>
+                        <input type="text" class="form-control" name="bank_asset_value" id="bank_asset_value"
+                            placeholder="Enter Bank Assets Value" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="education">Education</label>
+                        <select id="education" name="education"
+                            style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;" required>
+                            <option value="1">Not Graduate</option>
+                            <option value="0">Graduate</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="self_employed">Self Employed</label>
+                        <select id="self_employed" name="self_employed"
+                            style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;" required>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+    
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit Details</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+        <h3>Thank You for Visiting</h3>
+        <p>&copy; 2024 LoanApproval. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
